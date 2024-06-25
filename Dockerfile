@@ -1,4 +1,4 @@
-FROM mariadb:noble
+FROM mariadb:latest
 
 RUN true \
     && apt update \
