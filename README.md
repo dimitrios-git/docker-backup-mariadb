@@ -38,7 +38,7 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
     ports:
-      - "${MARIADB_EXT_PORT-10000:-3306}:3306"
+      - "${MARIADB_EXT_PORT:-10000}:3306"
     restart: unless-stopped
     healthcheck:
       test:
@@ -56,6 +56,7 @@ services:
   backup_mariadb:
     container_name: backup_${MARIADB_CONTAINER_NAME:-mariadb}
     image: dimitriosdockerhub/backup-mariadb:${MARIADB_IMAGE_VERSION:-latest}
+    hostname: backup_${MARIADB_CONTAINER_NAME:-mariadb}
     restart: unless-stopped
     depends_on:
       - mariadb
